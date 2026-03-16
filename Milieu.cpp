@@ -51,7 +51,6 @@ void Milieu::step( void )
             aMourir.push_back( b );
 
     //détection des collisions
-
     for ( int i = 0; i < (int)listeBestioles.size(); ++i )
     {
         for ( int j = i+1; j < (int)listeBestioles.size(); ++j )
@@ -67,11 +66,15 @@ void Milieu::step( void )
             if ( dist < SEUIL_COLLISION )
             {
                 double proba = static_cast<double>( std::rand() ) / RAND_MAX;
-                if ( proba < 0.2 )
+
+                double probaMortB1 = 0.2 * ( 1.0 - b1->getProtectionCollision() );
+                double probaMortB2 = 0.2 * ( 1.0 - b2->getProtectionCollision() );
+
+                Bestiole* victime = ( std::rand() % 2 == 0 ) ? b1 : b2;
+                double probaMort = ( victime == b1 ) ? probaMortB1 : probaMortB2;
+
+                if ( proba < probaMort )
                 {
-                    // l'une des deux meurt
-                    Bestiole* victime = ( std::rand() % 2 == 0 ) ? b1 : b2;
-                    // évite les doublons dans aMourir
                     if ( std::find( aMourir.begin(), aMourir.end(), victime )
                          == aMourir.end() )
                         aMourir.push_back( victime );

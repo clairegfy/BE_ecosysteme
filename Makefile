@@ -5,7 +5,7 @@ CXXFLAGS = -Wall -std=c++11 -I . -I$(X11_PREFIX)/include
 LDFLAGS  = -L$(X11_PREFIX)/lib
 LDLIBS   = -lX11 -lpthread
 
-OBJS = Aquarium.o Bestiole.o Milieu.o Gregaire.o Peureuse.o Kamikaze.o Prevoyante.o MultiPersonnalite.o Yeux.o Oreilles.o Nageoires.o Carapace.o Camouflage.o
+OBJS = Aquarium.o Bestiole.o Milieu.o Gregaire.o Peureuse.o Kamikaze.o Prevoyante.o MultiPersonnalite.o Yeux.o Oreilles.o Nageoires.o Carapace.o Camouflage.o SimMemento.o SimulationAnalyser.o
 
 main: main.cpp $(OBJS)
 	$(CXX) -o $@ $^ $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
@@ -48,6 +48,12 @@ Carapace.o: Carapace.cpp Carapace.h
 
 Camouflage.o: Camouflage.cpp Camouflage.h
 	$(CXX) $(CXXFLAGS) -c Camouflage.cpp
+
+SimMemento.o: SimMemento.cpp SimMemento.h
+	$(CXX) $(CXXFLAGS) -c SimMemento.cpp
+
+SimulationAnalyser.o: SimulationAnalyser.cpp SimulationAnalyser.h
+	$(CXX) $(CXXFLAGS) -c SimulationAnalyser.cpp
 
 clean:
 	rm -f *.o main

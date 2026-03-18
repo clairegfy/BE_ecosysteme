@@ -1,4 +1,7 @@
 #include "Milieu.h"
+#include "Gregaire.h"
+#include "Peureuse.h"
+#include "Kamikaze.h"
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
@@ -38,19 +41,60 @@ void Milieu::removeMember( Bestiole* b )
     }
 }
 
+void Milieu::notifier( const EvenementSim& e )
+{
+    if ( e.type == NAISSANCE )
+    {
+        Bestiole* b = new Bestiole();
+
+        int tirage = std::rand() % 3;
+        if ( tirage == 0 )
+            b->setComportement( new Gregaire() );
+        else if ( tirage == 1 )
+            b->setComportement( new Peureuse() );
+        else
+            b->setComportement( new Kamikaze() );
+
+        addMember( b );
+    }
+
+    else if ( e.type == MORT )
+    {
+        if ( !listeBestioles.empty() )
+        {
+            int index = std::rand() % listeBestioles.size();
+            removeMember( listeBestioles[index] );
+        }
+    }
+
+    else if ( e.type == CHANGEMENT_COMPORTEMENT )
+    {
+        if ( !listeBestioles.empty() )
+        {
+            int index = std::rand() % listeBestioles.size();
+            Bestiole* b = listeBestioles[index];
+
+            int tirage = std::rand() % 3;
+            if ( tirage == 0 )
+                b->setComportement( new Gregaire() );
+            else if ( tirage == 1 )
+                b->setComportement( new Peureuse() );
+            else
+                b->setComportement( new Kamikaze() );
+        }
+    }
+}
+
 void Milieu::step( void )
 {
-    //effacement du fond
     cimg_forXY( *this, px, py )
         fillC( px, py, 0, white[0], white[1], white[2] );
 
-    //mort par vieillesse
     std::vector<Bestiole*> aMourir;
     for ( Bestiole* b : listeBestioles )
         if ( b->estMort() )
             aMourir.push_back( b );
 
-    //détection des collisions
     for ( int i = 0; i < (int)listeBestioles.size(); ++i )
     {
         for ( int j = i+1; j < (int)listeBestioles.size(); ++j )
@@ -81,7 +125,6 @@ void Milieu::step( void )
                 }
                 else
                 {
-                    // rebond : inversion des orientations
                     b1->setOrientation( b1->getOrientation() + M_PI );
                     b2->setOrientation( b2->getOrientation() + M_PI );
                 }
@@ -89,16 +132,16 @@ void Milieu::step( void )
         }
     }
 
-    //suppression des mortes
     for ( Bestiole* b : aMourir )
         removeMember( b );
 
-    //déplacement et affichage
     for ( Bestiole* b : listeBestioles )
     {
         b->action( *this );
         b->draw( *this );
     }
+
+    memento.save( listeBestioles.size() );
 }
 
 int Milieu::nbVoisins( Bestiole* b )

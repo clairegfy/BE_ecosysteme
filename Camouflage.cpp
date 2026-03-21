@@ -19,3 +19,4 @@ double Camouflage::getBonusProtection() const
 {
     return 0.0;
 }
+

@@ -24,3 +24,7 @@ void Prevoyante::action( Bestiole* b, std::vector<Bestiole*>& voisins )
             b->setOrientation( b->getOrientation() + M_PI / 2. );
     }
 }
+
+void Prevoyante::getCouleur(unsigned char & r, unsigned char & g, unsigned char & b) const {
+    r = 255; g = 255; b = 0; 
+}

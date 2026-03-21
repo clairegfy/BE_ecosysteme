@@ -139,7 +139,9 @@ void Bestiole::bouge( int xLim, int yLim )
 
 void Bestiole::draw( UImg & support )
 {
-
+    unsigned char r, g, b;
+    _comportement->getCouleur(r, g, b);
+    const unsigned char couleur[] = { r, g, b };
    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
    double         yt = y - sin( orientation )*AFF_SIZE/2.1;
 

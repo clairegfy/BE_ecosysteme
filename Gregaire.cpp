@@ -16,3 +16,8 @@ void Gregaire::action( Bestiole* b, std::vector<Bestiole*>& voisins )
     b->setOrientation( atan2( sommeY / voisins.size(),
                                sommeX / voisins.size() ) );
 }
+void Gregaire::getCouleur(unsigned char & r, unsigned char & g, unsigned char & b) const {
+    r = 0;   
+    g = 255; 
+    b = 0;   
+}

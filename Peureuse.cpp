@@ -21,3 +21,9 @@ void Peureuse::action( Bestiole* b, std::vector<Bestiole*>& voisins )
         _enFuite = false;
     }
 }
+
+void Peureuse::getCouleur(unsigned char & r, unsigned char & g, unsigned char & b) const {
+    r = 0; 
+    g = 0;   
+    b = 255;   
+}

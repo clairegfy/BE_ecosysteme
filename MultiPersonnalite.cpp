@@ -36,3 +36,7 @@ Comportement* MultiPersonnalite::clone() const
     mp->_timer   = _timer;
     return mp;
 }
+
+void MultiPersonnalite::getCouleur(unsigned char & r, unsigned char & g, unsigned char & b) const {
+    _strategies[_courant]->getCouleur(r, g, b);
+}

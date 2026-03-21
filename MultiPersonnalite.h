@@ -18,6 +18,7 @@ public :
     void ajouterComportement( Comportement* c );
     void action( Bestiole* b, std::vector<Bestiole*>& voisins ) override;
     Comportement* clone() const override;
+    void getCouleur(unsigned char & r, unsigned char & g, unsigned char & b) const override;
 };
 
 #endif

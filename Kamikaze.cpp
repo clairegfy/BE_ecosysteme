@@ -27,3 +27,7 @@ void Kamikaze::action( Bestiole* b, std::vector<Bestiole*>& voisins )
         b->setOrientation( atan2( -dy, dx ) );  // -dy car axe y inversé
     }
 }
+
+void Kamikaze::getCouleur(unsigned char & r, unsigned char & g, unsigned char & b) const {
+    r = 255; g = 0; b = 0; 
+}

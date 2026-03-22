@@ -15,6 +15,7 @@ public:
     int getNbGregaires() const;
     int getNbPeureuses() const;
     int getNbKamikazes() const;
+    int getNbPrevoyantes() const;
     int getNbMulti() const;
 };
 

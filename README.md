@@ -82,7 +82,6 @@ SimulationAnalyser – affiche le bilan en fin de simulation
 | `Carapace` | Augmente la résistance aux collisions, réduit la vitesse |
 | `Nageoires` | Multiplie la vitesse de déplacement |
 | `BestiolesFactory` | Singleton créant des bestioles entièrement configurées (Factory) |
-| `PrototypeRegistry` | Registre de prototypes clonables par nom (Prototype) |
 | `PopulationConfig` | Structure de configuration du nombre de bestioles par type |
 | `EvenementSim` | Événement de simulation (NAISSANCE, MORT, CHANGEMENT_COMPORTEMENT) |
 | `EvenementObserver` | Interface Observer abonnée aux événements du Milieu |

@@ -25,7 +25,7 @@ Des créatures appelées **bestioles** évoluent dans un aquarium 2D, chacune do
 ## Aperçu du projet
 
 Ce projet est un **bureau d'études (BE)** réalisé en C++11.  
-Il met en œuvre les concepts de **programmation orientée objet** : héritage, polymorphisme, et de nombreux patrons de conception (**Strategy**, **Observer**, **Mémento**, **Factory**, **Prototype**, **Singleton**, **Décorateur**) pour modéliser les comportements, les capteurs et les accessoires des créatures.
+Il met en œuvre les concepts de **programmation orientée objet** : héritage, polymorphisme, et de nombreux patrons de conception (**Strategy**, **Observer**, **Mémento**, **Prototype**, **Singleton**) pour modéliser les comportements, les capteurs et les accessoires des créatures.
 
 L'écosystème se déroule dans une fenêtre 640 × 480 pixels.  
 À chaque pas de simulation, chaque bestiole perçoit ses voisines via ses capteurs, puis adapte son orientation et sa vitesse en fonction de son comportement et de ses accessoires.  
@@ -40,23 +40,21 @@ La simulation enregistre l'historique de la population (Mémento) et affiche un 
 Aquarium              – boucle principale et fenêtre graphique (CImg)
   └── Milieu          – contient la liste des bestioles, gère les collisions, notifie les Observer
         └── Bestiole* (n)  – entité mobile dotée d'un Comportement, de Capteurs et d'Accessoires
-              ├── Comportement  – interface abstraite (Strategy)
+              ├── Comportement  – interface abstraite
               │     ├── Gregaire
               │     ├── Peureuse
               │     ├── Kamikaze
               │     ├── Prevoyante
               │     └── MultiPersonnalite  – composite de plusieurs comportements
-              ├── ICapteur* (0..n)  – capteurs sensoriels (Strategy / Décorateur)
+              ├── ICapteur* (0..n)  – capteurs sensoriels (Strategy)
               │     ├── Yeux          – vision angulaire
               │     └── Oreilles      – détection sonore omnidirectionnelle
-              └── IAccessoire* (0..n) – accessoires modificateurs (Décorateur)
+              └── IAccessoire* (0..n) – accessoires modificateurs
                     ├── Camouflage    – réduit la visibilité
                     ├── Carapace      – protection + ralentissement
                     └── Nageoires     – augmentation de vitesse
 
 BestiolesFactory (Singleton)  – crée et configure des bestioles complètes
-  └── PrototypeRegistry        – registre de prototypes clonables (Prototype)
-  └── PopulationConfig         – paramétrage du nombre de bestioles par type
 
 EvenementObserver  – interface Observer
 SimMemento         – historique de la population (Mémento)

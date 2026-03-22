@@ -7,14 +7,16 @@ private:
     int nbGregaires;
     int nbPeureuses;
     int nbKamikazes;
+    int nbPrevoyantes;
     int nbMulti;
 
 public:
-    PopulationConfig( int g = 5, int p = 5, int k = 5, int m = 5 );
+    PopulationConfig( int g = 5, int p = 5, int k = 5, int pr = 5, int m = 5 );
 
     int getNbGregaires() const;
     int getNbPeureuses() const;
     int getNbKamikazes() const;
+    int getNbPrevoyantes() const;
     int getNbMulti() const;
 };
 

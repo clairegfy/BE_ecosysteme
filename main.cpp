@@ -8,7 +8,7 @@ int main()
     Aquarium ecosysteme( 640, 480, 30 );
 
     // configuration de la population
-    PopulationConfig config( 5, 5, 5, 5 );  // grégaires, peureuses, kamikazes, multi
+    PopulationConfig config( 5, 5, 5, 5, 5 );  // grégaires, peureuses, kamikazes, prévoyantes, multi
 
     // factory — point d'entrée unique
     BestiolesFactory* factory = BestiolesFactory::getInstance();

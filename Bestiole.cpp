@@ -66,11 +66,6 @@ Bestiole::Bestiole( const Bestiole & b )
    for ( IAccessoire* a : b.accessoires )
         accessoires.push_back( a->clone() );
 
-   for ( ICapteur* c : b.capteurs )
-      capteurs.push_back( c->clone() );
-
-   for ( IAccessoire* a : b.accessoires )
-      accessoires.push_back( a->clone() );
 
    age    = 0;        //repart à 0 pour une nouvelle bestiole
    ageMax = b.ageMax;
